@@ -1004,6 +1004,8 @@ self: super: with self; {
 
   aws-lambda-builders = callPackage ../development/python-modules/aws-lambda-builders { };
 
+  aws-neuronx-runtime-discovery = callPackage ../development/python-modules/aws-neuronx-runtime-discovery { };
+
   aws-sam-translator = callPackage ../development/python-modules/aws-sam-translator { };
 
   aws-secretsmanager-caching = callPackage ../development/python-modules/aws-secretsmanager-caching { };
@@ -6423,6 +6425,8 @@ self: super: with self; {
     inherit (pkgs) libsodium;
   };
 
+  libneuronxla = callPackage ../development/python-modules/libneuronxla/default.nix {};
+
   libpcap = callPackage ../development/python-modules/libpcap {
     pkgsLibpcap = pkgs.libpcap; # Needs the C library
   };
@@ -8321,6 +8325,8 @@ self: super: with self; {
   neuron-full = pkgs.neuron-full.override { python3 = python; };
 
   neuronpy = python.pkgs.toPythonModule neuron-full;
+
+  neuronx-cc = callPackage ../development/python-modules/neuronx-cc { };
 
   nevow = callPackage ../development/python-modules/nevow { };
 
@@ -14580,6 +14586,8 @@ self: super: with self; {
   torchWithoutRocm = self.torch.override {
     rocmSupport = false;
   };
+
+  torch-neuronx = callPackage ../development/python-modules/torch-neuronx/default.nix { };
 
   torch-tb-profiler = callPackage ../development/python-modules/torch-tb-profiler/default.nix { };
 
